@@ -1,0 +1,1 @@
+pyinstaller -F D:\coding\RS_DL_win\dl_main.py --add-data="C:\Program Files\Anaconda3\envs\tfpy35\Lib\site-packages\tensorflow\python\_pywrap_tensorflow_internal.pyd;tensorflow/python"
