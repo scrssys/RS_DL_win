@@ -29,26 +29,30 @@ if __name__=="__main__":
 
     nodata = 65535.0
     result_bits = '16bits'
-    valid_range = 1024
-    cut_value = 100
+    valid_range = 1024.0
+    cut_value = 100.0
 
     if '8' in dtype:
-        nodata = 255
+        nodata = 255.0
         result_bits = '8bits'
-        valid_range = 255
-        cut_value = 25
+        valid_range = 255.0
+        cut_value = 25.0
     else:
         pass
 
     src_files, tt = get_file(input_dir)
-    assert (tt != 0)
+    if tt==0:
+        print("Warning: there is no images in directory!")
+        sys.exit(-1)
     factor = 4.0
 
     if '8' in result_bits:
-        assert (valid_range < 256)
+        if valid_range>255.0:
+            valid_range=255.0
         factor = 6.0
     elif '16' in result_bits:
-        assert (valid_range < 65536)
+        if valid_range > 65535.0:
+            valid_range = 65535.0
         factor = 4.0
     else:
         pass
@@ -56,12 +60,9 @@ if __name__=="__main__":
     for file in tqdm(src_files):
 
         absname = os.path.split(file)[1]
-        # absname = absname.split('.')[0]
-        # absname = ''.join([absname, '.tif'])
         print(absname)
         if not os.path.isfile(file):
             print("input file dose not exist:{}\n".format(file))
-            # sys.exit(-1)
             continue
 
         dataset = gdal.Open(file)
