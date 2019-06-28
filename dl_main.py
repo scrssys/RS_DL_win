@@ -34,7 +34,7 @@ parser.add_argument('--config', dest='config_file', help='json file to config',
 parser.add_argument('--img_input', dest='img_input', help='image input directory',
                          default='D:\\data\\test\\normal\\11')
 parser.add_argument('--model_path', dest='model_path', help='classify model path',
-                         default='D:\data\models\global\global_fpn_resnet34_categorical_crossentropy_288_2019-04-11_08-38-41.h5')
+                         default='D:\data\models\global\global_unet_vgg16_categorical_crossentropy_480_012bands_2019-06-27_16-02-46best.h5')
 parser.add_argument('--mask_dir', dest='mask_dir', help='classified mask saving directory',
                          default='D:\\data\\test\\pred\\')
 args=parser.parse_args()
@@ -171,8 +171,8 @@ if __name__ == '__main__':
                 sys.exit(-2)
             a,b,c = tmp_img.shape
             exp_img = np.zeros((a,b,len(band_list)),np.float16)
-            for i in band_list:
-                exp_img[:,:,i] = tmp_img[:,:,band_list[i]]
+            for j in band_list:
+                exp_img[:,:,j] = tmp_img[:,:,band_list[j]]
 
             if im_type == UINT8:
                 input_img = exp_img / 255.0
