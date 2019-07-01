@@ -12,6 +12,7 @@ from segmentation_models import *
 from keras import backend as K
 K.set_image_dim_ordering('tf')
 K.clear_session()
+print( "test")
 
 from base_functions import load_img_by_gdal_geo, load_img_by_gdal_blocks, UINT10,UINT8,UINT16, get_file, polygonize
 from predict_backbone import predict_img_with_smooth_windowing,core_orignal_predict,core_smooth_predict_multiclass, core_smooth_predict_binary
