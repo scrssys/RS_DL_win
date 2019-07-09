@@ -390,10 +390,10 @@ def core_orignal_predict(image,bands, model,window_size,img_w=256):
             # print('crop:{}'.format(crop.shape))
 
             pred = model.predict(crop, verbose=2)
-            # pred = np.argmax(pred, axis=2)  #for one hot encoding
+            pred = np.argmax(pred, axis=-1)  #for one hot encoding
             # pred = pred[:,:,1]
-            pred[pred<0.5]=0
-            pred[pred>=0.5]=1
+            # pred[pred<0.5]=0
+            # pred[pred>=0.5]=1
 
             pred = pred.reshape(img_w, img_w)
             # print(np.unique(pred))
@@ -403,9 +403,9 @@ def core_orignal_predict(image,bands, model,window_size,img_w=256):
     outputresult =mask_whole[0:h,0:w]
     # outputresult = outputresult.astype(np.uint8)
 
-    plt.imshow(outputresult, cmap='gray')
-    plt.title("Original predicted result")
-    plt.show()
+    # plt.imshow(outputresult, cmap='gray')
+    # plt.title("Original predicted result")
+    # plt.show()
     # cv2.imwrite('../../data/predict/test_model.png',outputresult*255)
     return outputresult
 

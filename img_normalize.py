@@ -14,6 +14,7 @@ parser.add_argument('--dtype', dest='dtype', help='8bits or 16bits',
                          default='16bits')
 args=parser.parse_args()
 
+
 if __name__=="__main__":
     input_dir = args.input_dir
     output_dir = args.output_dir
